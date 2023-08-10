@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mokepon | Ricardo Zapata Cruz</title>
+    <script src="js/mokepon.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="titulo">Mokepon</h1>
+
+    <section id="lista-mascotas">
+        <h2 class="subtitulo">Elige tu Mokepon:</h2>
+
+        <div class="tarjetas">
+            <input type="radio" name="mascota" id="piplup" />
+            <label for="piplup" class="mokepon">
+                <img src="assets/piplup.png" alt="Piplup">
+                <p>Piplup</p>
+            </label>
+            
+            <input type="radio" name="mascota" id="turtwig" />
+            <label for="turtwig" class="mokepon">
+                <img src="assets/turtwig.png" alt="Turtwig">
+                <p>Turtwig</p>
+            </label>
+            
+            <input type="radio" name="mascota" id="chimchar" />
+            <label for="chimchar" class="mokepon">
+                <img src="assets/chimchar.png" alt="Chimchar">
+                <p>Chimchar</p>
+            </label>
+            
+            <input type="radio" name="mascota" id="wooper" />
+            <label for="wooper" class="mokepon">
+                <img src="assets/wooper.png" alt="Wooper">
+                <p>Wooper</p>
+            </label>
+            
+            <input type="radio" name="mascota" id="volcanion" />
+            <label for="volcanion" class="mokepon">
+                <img src="assets/volcanion.png" alt="Volcanion">
+                <p>Volcanion</p>
+            </label>
+            
+            <input type="radio" name="mascota" id="numel" />
+            <label for="numel" class="mokepon">
+                <img src="assets/numel.png" alt="Numel">
+                <p>Numel</p>
+            </label>
+        </div>
+        
+        <button id="boton-mascotas" class="main-boton">Seleccionar</button>
+
+    </section>
+    <section id="ataque" hidden>
+
+        <section id="mensajes">
+            <div><span id="ataque-jugador">JUGADOR</span></div>
+            <div><span id="resultado">RESULTADO</span></div>
+            <div><span id="ataque-rival">RIVAL</span></div>
+        </section>
+
+        <section id="mascotas-en-duelo">
+            <div id="imagen-jugador">
+                <span id="vidas-jugador"></span>
+            </div>
+            <img id="versus" src="assets/vs.png" alt="versus">
+            <div id="imagen-rival">
+                <span id="vidas-rival"></span>
+            </div>
+        </section>
+
+        <h2><span id="mensaje-final">Elige tu ataque:</span></h2>
+
+        <div id="botones">
+            <button id="boton-fuego" class="opciones-boton">FUEGO 🔥</button>
+            <button id="boton-agua" class="opciones-boton">AGUA 💧</button>
+            <button id="boton-tierra" class="opciones-boton">TIERRA 🌱</button>
+        </div>
+
+        <section id="reiniciar" hidden>
+            <button id="boton-reiniciar" class="reinicio-boton">REINICIAR🔄</button>
+        </section>
+                
+    </section>
+    
+</body>
+</html>
