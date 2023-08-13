@@ -1,109 +1,92 @@
+// Listas con informacion de los personajes del juego
 const listaMascotas = ['piplup','turtwig','chimchar','wooper','volcanion','numel']
 const listaAtaques = ['fuego','agua','tierra']
 
+// Constantes de botones de interacción en ataques
+const botonAgua = document.getElementById("boton-agua")
+const botonFuego = document.getElementById("boton-fuego")
+const botonTierra = document.getElementById("boton-tierra")
+const botonReiniciar = document.getElementById("boton-reiniciar")
+const botonMascotaJugador = document.getElementById("boton-mascotas")
+const resultadoDuelo = document.getElementById("resultado")
+const jugadorDuelo = document.getElementById("ataque-jugador")
+const rivalDuelo = document.getElementById("ataque-rival")
+
+// Declaración de variables globales
 let nombreAtaqueJugador, nombreAtaqueRival
 let mascota, mascotaRival
 let vidasJugador = 3
 let vidasRival = 3
-let botonAgua, botonFuego, botonTierra, botonReiniciar, botonMascotaJugador
 
+// Funcion principal del juego
 function iniciarJuego(){
-    botonMascotaJugador = document.getElementById("boton-mascotas")
-    botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
-
-    botonFuego = document.getElementById("boton-fuego")
-    botonFuego.addEventListener('click', () => {ataqueJugador(0)})
-    botonAgua = document.getElementById("boton-agua")
-    botonAgua.addEventListener('click', () => {ataqueJugador(1)})
-    botonTierra = document.getElementById("boton-tierra")
-    botonTierra.addEventListener('click', () => {ataqueJugador(2)})
-
-    botonReiniciar = document.getElementById("boton-reiniciar")
+    botonMascotaJugador.addEventListener('click', seleccionarMascota)
+    botonFuego.addEventListener('click', () => {ataque(0)})
+    botonAgua.addEventListener('click', () => {ataque(1)})
+    botonTierra.addEventListener('click', () => {ataque(2)})
     botonReiniciar.addEventListener('click', () => {location.reload()})
 }
 
+// Funciones creadas para funciones minimas dentro del programa
 function capitalize(string){ return string.charAt(0).toUpperCase() + string.slice(1)}
 function random(min,max){ return Math.floor(Math.random() * (max - min + 1) + min)}
 
-function ataqueJugador(index){
+function ataque(index){
     nombreAtaqueJugador = listaAtaques[index].toUpperCase()
-    ataqueRival()
-}
-
-function ataqueRival(){
     nombreAtaqueRival = listaAtaques[random(0,2)].toUpperCase()
-    crearMensaje()
+    dueloDeAtaques()
 }
 
-function crearMensaje(){
-    if(vidasJugador > 0 && vidasRival >0){
-        dueloDeAtaques()
-        comprobarVictoria()}
-    else{alert("Reinicie el Juego")}
-}
-
-function seleccionarMascotaJugador(){
+function seleccionarMascota(){
     let mascotaNoEnLista = true
     for(let i = 0; i < listaMascotas.length; i++){
         if(document.getElementById(listaMascotas[i]).checked){
             mascota = capitalize(listaMascotas[i])
-            let imagenJugador = document.createElement('img')
-            imagenJugador.src = 'assets/' +  listaMascotas[i] + '.png'
-            imagenJugador.alt = mascota
-            let tituloMascotaJugador = document.createElement('p')
-            tituloMascotaJugador.innerHTML = mascota
-            document.getElementById('imagen-jugador').appendChild(imagenJugador)
-            document.getElementById('imagen-jugador').appendChild(tituloMascotaJugador)
-            vidasEnJuego('vidas-jugador',vidasJugador)
-            vidasEnJuego('vidas-rival',vidasRival)
-            seleccionarMascotaRival()
+            seleccionDeMascota(mascota)
+            vidasEnJuego()
             mascotaNoEnLista = false
-            let seleccionarMascota = document.getElementById('lista-mascotas')
-            seleccionarMascota.style.display = 'none'
-            let seleccionarAtaque = document.getElementById('ataque')
-            seleccionarAtaque.style.display = 'flex'
+            document.getElementById('lista-mascotas').style.display = 'none'
+            document.getElementById('ataque').style.display = 'flex'
             break
-        } 
-    } if(mascotaNoEnLista){alert('Selecciona una opcion correcta')}
-}
+        }}
+        if(mascotaNoEnLista == true) {alert('Selecciona una opción')
+}}
 
-function vidasEnJuego(player ,vidas){
-    corazonVivo = '💖'
-    corazonMuerto = '🖤'
-    vidasPerdidas = 3 - vidas
-    panelVidas = corazonVivo.repeat(vidas) + corazonMuerto.repeat(vidasPerdidas)
-    document.getElementById(player).innerHTML = panelVidas
-}
-
-function seleccionarMascotaRival(){
-    let indexRandom = random(0,5)
-    mascotaRival = capitalize(listaMascotas[indexRandom])
+function seleccionDeMascota(mascota){
+    mascotaRival = capitalize(listaMascotas[random(0,5)])
+    const listaImagen = ['imagen-jugador','imagen-rival']
+    const listaVariablesImagen = [mascota,mascotaRival]
     if(mascotaRival != mascota){
-        let tituloMascotaRival = document.createElement('p')
-        tituloMascotaRival.innerHTML = mascotaRival
-        let imagenRival = document.createElement('img')
-        imagenRival.src = 'assets/' + listaMascotas[indexRandom] + '.png'
-        imagenRival.alt = mascotaRival
-        document.getElementById('imagen-rival').appendChild(imagenRival)
-        document.getElementById('imagen-rival').appendChild(tituloMascotaRival)
-    }else{seleccionarMascotaRival()}
-    
+        for(let i=0; i< listaImagen.length; i++){
+            let tituloMascota = document.createElement('p')
+            tituloMascota.innerHTML = listaVariablesImagen[i]
+            let imagenMascota = document.createElement('img')
+            imagenMascota.src = 'assets/' + listaVariablesImagen[i] + '.png'
+            document.getElementById(listaImagen[i]).appendChild(imagenMascota)
+            document.getElementById(listaImagen[i]).appendChild(tituloMascota)
+        }     
+    } else{seleccionDeMascota()}
 }
 
+function vidasEnJuego(){
+    const corazonVivo = '💖'
+    const corazonMuerto = '🖤'
+    const player = ['vidas-jugador','vidas-rival']
+    let vidas = [vidasJugador, vidasRival]
+    for(let i=0; i < player.length; i++){
+        let vidasPerdidas = 3 - vidas[i]
+        let panelVidas = corazonVivo.repeat(vidas[i]) + corazonMuerto.repeat(vidasPerdidas)
+        document.getElementById(player[i]).innerHTML = panelVidas
+    }
+}
 function dueloDeAtaques(){
-    let resultadoDuelo = document.getElementById("resultado")
-    let jugadorDuelo = document.getElementById("ataque-jugador")
-    let rivalDuelo = document.getElementById("ataque-rival")
     let resultado
     let divJugador = jugadorDuelo.parentNode
     let divResultado = resultadoDuelo.parentNode
     let divRival = rivalDuelo.parentNode
 
     if(
-        (nombreAtaqueJugador == "FUEGO" && nombreAtaqueRival == "TIERRA") ||
-        (nombreAtaqueJugador == "TIERRA" && nombreAtaqueRival == "AGUA") || 
-        (nombreAtaqueJugador == "AGUA" && nombreAtaqueRival == "FUEGO")
-        ){
+        (nombreAtaqueJugador == "FUEGO" && nombreAtaqueRival == "TIERRA") || (nombreAtaqueJugador == "TIERRA" && nombreAtaqueRival == "AGUA") || (nombreAtaqueJugador == "AGUA" && nombreAtaqueRival == "FUEGO")){
         vidasRival = vidasRival - 1
         vidasEnJuego('vidas-rival',vidasRival)
         divResultado.style.backgroundColor = 'green'
@@ -123,6 +106,8 @@ function dueloDeAtaques(){
     jugadorDuelo.innerHTML = nombreAtaqueJugador
     resultadoDuelo.innerHTML = resultado
     rivalDuelo.innerHTML = nombreAtaqueRival
+
+    comprobarVictoria()
 }
 
 function panelDuelo(div,ataque){
@@ -150,4 +135,4 @@ function comprobarVictoria(){
         reiniciarJuego.style.display = 'flex'
 }}
 
-window.addEventListener('load', iniciarJuego)
+window.addEventListener('load',iniciarJuego)

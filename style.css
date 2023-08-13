@@ -147,7 +147,7 @@ body{
     margin: 5px;
     border-radius: 10px;
     text-align: center;
-    transition: 0.3s;
+    transition:  .3s;
 }
 
 label:hover{
