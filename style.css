@@ -34,13 +34,12 @@ body{
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 85vh;
+        height: 80vh;
     }
 }
 
 .tarjetas {
     display: flex;
-    align-items:start;
     justify-content: center;
     flex-wrap:wrap;
 }
@@ -115,12 +114,20 @@ body{
 
 .opciones-boton{
     font-family: 'Comic Sans MS';
-    width: 100px;
-    height: 40px;
-    border-radius: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
     background-color: white;
     border-color: transparent;
-    margin: 1%;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.opciones-boton:disabled{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.8);
+    transition: .5s;
+
 }
 
 .main-boton{
@@ -154,7 +161,7 @@ label:hover{
     background-color: rgba(0, 0, 0, 0.25);
 }
 
-button:hover{
+button:enabled:hover{
     background-color:  rgba(0, 0, 0, 0.25);
     border: 1px white solid;
     color: white;
