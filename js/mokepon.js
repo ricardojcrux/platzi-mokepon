@@ -32,12 +32,12 @@ class Mokepon{
 // Mokepones objetos traidos de la clase
 
 let mokepones = []
-let piplup = new Mokepon('piplup','Piplup.png', 3)
-let turtwig = new Mokepon('turtwig','Turtwig.png', 3)
-let chimchar = new Mokepon('chimchar','Chimchar.png', 3)
-let wooper = new Mokepon('wooper','Wooper.png', 3)
-let volcanion = new Mokepon('volcanion','Volcanion.png', 3)
-let numel = new Mokepon('numel','Numel.png', 3)
+let piplup = new Mokepon('piplup','piplup.png', 3)
+let turtwig = new Mokepon('turtwig','turtwig.png', 3)
+let chimchar = new Mokepon('chimchar','chimchar.png', 3)
+let wooper = new Mokepon('wooper','wooper.png', 3)
+let volcanion = new Mokepon('volcanion','volcanion.png', 3)
+let numel = new Mokepon('numel','numel.png', 3)
 
 mokeponAtaques(piplup, [1,5,1])
 mokeponAtaques(turtwig, [1,1,5])
