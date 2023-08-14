@@ -13,7 +13,7 @@ const rivalDuelo = document.getElementById("ataque-rival")
 
 // Declaración de variables globales
 let nombreAtaqueJugador, nombreAtaqueRival
-let mascota, mascotaRival
+let objetoMascota, objetoMascotaRival
 let opcionDeMokepones, botonesAtaque
 let vidasJugador, vidasRival
 let todosLosBotones = []
@@ -111,37 +111,37 @@ function seleccionarMascota(){
     let mascotaNoEnLista = true
     for(let i = 0; i < mokepones.length; i++){
         if(document.getElementById(mokepones[i].nombre).checked){
-            mascota = capitalize(mokepones[i].nombre)
+            objetoMascota = mokepones[i]
             vidasJugador = mokepones[i].vida
-            seleccionDeMascota(mascota)
+            seleccionDeMascota(objetoMascota)
             vidasEnJuego()
             mascotaNoEnLista = false
             document.getElementById('lista-mascotas').style.display = 'none'
             document.getElementById('ataque').style.display = 'flex'
-            creacionDeBotones(mokepones[i])
+            creacionDeBotones(objetoMascota)
             secuenciaAtaque()
             break
         }}
         if(mascotaNoEnLista == true) {alert('Selecciona una opción')
 }}
 
-function seleccionDeMascota(mascota){
-    let objetoMascotaRival = mokepones[random(0,5)]
+function seleccionDeMascota(objetoMascota){
+    objetoMascotaRival = mokepones[random(0,5)]
     mascotaRival = capitalize(objetoMascotaRival.nombre)
     vidasRival = objetoMascotaRival.vida
     const listaImagen = ['imagen-jugador','imagen-rival']
-    const listaVariablesImagen = [mascota,mascotaRival]
-    if(mascotaRival != mascota){
+    const listaVariablesImagen = [objetoMascota,objetoMascotaRival]
+    if(objetoMascotaRival.nombre != objetoMascota.nombre){
         for(let i=0; i< listaImagen.length; i++){
             let tituloMascota = document.createElement('p')
-            tituloMascota.innerHTML = listaVariablesImagen[i]
+            tituloMascota.innerHTML = capitalize(listaVariablesImagen[i].nombre)
             let imagenMascota = document.createElement('img')
-            imagenMascota.src = 'assets/' + listaVariablesImagen[i] + '.png'
+            imagenMascota.src = listaVariablesImagen[i].foto
             document.getElementById(listaImagen[i]).appendChild(imagenMascota)
             document.getElementById(listaImagen[i]).appendChild(tituloMascota)
             arrayAtaquesRival(objetoMascotaRival)
         }     
-    } else{seleccionDeMascota(mascota)}
+    } else{seleccionDeMascota(objetoMascota)}
 }
 
 function arrayAtaquesRival(mokepon){
@@ -202,9 +202,9 @@ function comprobarVictoria(){
     if((vidasJugador == 0 || vidasRival == 0) || ataquesRival.length == 0){
         let resultadoDuelo = document.getElementById("mensaje-final")
         if(vidasRival == 0 || (vidasJugador > vidasRival)){
-            resultadoDuelo.innerHTML = 'Tu ' + mascota + ' ha VENCIDO!'}
+            resultadoDuelo.innerHTML = 'Tu ' + capitalize(objetoMascota.nombre) + ' ha VENCIDO!'}
         else if(vidasJugador == 0 || (vidasJugador < vidasRival)){
-            resultadoDuelo.innerHTML = 'Tu ' + mascota + ' ha sido DERROTADO :('}
+            resultadoDuelo.innerHTML = 'Tu ' + capitalize(objetoMascota.nombre) + ' ha sido DERROTADO :('}
         else {resultadoDuelo.innerHTML = 'EMPATE TECNICO'}
         let botonesJuego = document.getElementById('botones')
         botonesJuego.style.display = 'none'
