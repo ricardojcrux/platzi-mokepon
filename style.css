@@ -36,6 +36,17 @@ body{
         align-items: center;
         height: 80vh;
     }
+
+    #botones button{
+        font-family: 'Comic Sans MS';
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        background-color: white;
+        border-color: transparent;
+        font-size: 25px;
+        margin: 5px;
+    }
 }
 
 .tarjetas {
@@ -49,7 +60,7 @@ body{
     align-items: center;
     text-align: center;
     justify-content: center;
-    width: 80%; 
+    width: 90%; 
     margin: 0 auto;
 }
 
@@ -109,6 +120,7 @@ body{
 
 #botones{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -120,7 +132,7 @@ body{
     background-color: white;
     border-color: transparent;
     font-size: 30px;
-    margin: 10px;
+    margin: 5px;
 }
 
 .opciones-boton:disabled{

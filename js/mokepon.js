@@ -103,7 +103,6 @@ function seleccionAtaque(ataque){
     let indexAtaqueRival = random(0,ataquesRival.length - 1)
     nombreAtaqueRival = ataquesRival[indexAtaqueRival].toUpperCase()
     ataquesRival.splice(indexAtaqueRival,1)
-    console.log('ataquesRival',ataquesRival)
     dueloDeAtaques()
 }
 
