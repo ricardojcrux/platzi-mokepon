@@ -47,6 +47,12 @@ body{
         font-size: 25px;
         margin: 5px;
     }
+
+    #botones button:disabled{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 0, 0, 0.8);
+    transition: .5s;
+    }
 }
 
 .tarjetas {
